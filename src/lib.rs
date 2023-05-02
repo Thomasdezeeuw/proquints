@@ -81,6 +81,14 @@ pub trait Proquint {
     fn as_bytes(&self) -> Self::Bytes;
 }
 
+impl<'a, T: Proquint> Proquint for &'a T {
+    type Bytes = T::Bytes;
+
+    fn as_bytes(&self) -> Self::Bytes {
+        (*self).as_bytes()
+    }
+}
+
 /// # Panics
 ///
 /// The implementation of [`proquints`] will panic if the length of the slice is
