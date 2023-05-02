@@ -126,6 +126,14 @@ impl Proquint for u64 {
     }
 }
 
+impl Proquint for u128 {
+    type Bytes = [u8; 16];
+
+    fn as_bytes(&self) -> Self::Bytes {
+        self.to_be_bytes()
+    }
+}
+
 impl Proquint for usize {
     type Bytes = [u8; size_of::<Self>()];
 
