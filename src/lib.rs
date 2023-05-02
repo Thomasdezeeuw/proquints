@@ -62,6 +62,7 @@ pub fn proquints_buf<'a>(input: &[u8], buf: &'a mut [u8], separator: u8) -> &'a 
 /// Returns the output length for `input_length`.
 ///
 /// The returned length for `input_length`s that are not even is invalid.
+#[must_use]
 pub const fn output_length(input_length: usize) -> usize {
     // Per 16 bits (2 bytes) we output 5 characters + separator, minus the
     // separator at the end.
@@ -126,7 +127,7 @@ impl Proquint for u64 {
 }
 
 impl Proquint for usize {
-    type Bytes = [u8; size_of::<usize>()];
+    type Bytes = [u8; size_of::<Self>()];
 
     fn as_bytes(&self) -> Self::Bytes {
         self.to_be_bytes()
