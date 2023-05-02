@@ -3,6 +3,16 @@
 //!
 //! See <https://arxiv.org/html/0901.4016> for an introduction and the
 //! specification.
+//!
+//! # Examples
+//!
+//! ```
+//! use std::net::Ipv4Addr;
+//! use proquints::proquints;
+//!
+//! assert_eq!(proquints(Ipv4Addr::LOCALHOST), "lusab-babad");
+//! assert_eq!(proquints(Ipv4Addr::new(63, 84, 220, 193)), "gutih-tugad");
+//! ```
 
 use std::convert::AsRef;
 use std::mem::size_of;
@@ -25,7 +35,7 @@ pub fn proquints<T: Proquint>(input: T) -> String {
     unsafe { String::from_utf8_unchecked(buf) }
 }
 
-/// Same as [`proquints`] but allows the user to provide the `buf`fer and
+/// Similar to [`proquints`] but allows the user to provide the `buf`fer and
 /// `separator`.
 ///
 /// # Panics
